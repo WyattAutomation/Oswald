@@ -19,4 +19,6 @@ Usage:
 replace "yourfacebookemail@example.com","yourfacebookpassword" in both mssgbot.py and commenter.py with your own username and password for Facebook, and then run each.
 
 
+Big props to hikaruAI's work here, of which I chopped down into "fbbot.py".  It got me started on this whole thing to begin with!:
+https://github.com/hikaruAi/FacebookBot
 
