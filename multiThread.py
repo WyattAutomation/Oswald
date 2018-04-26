@@ -480,6 +480,7 @@ def beam_search_generator(sess, net, initial_state, initial_sample,
             beam_outputs = [output[l:] for output in beam_outputs]
         if early_term: return
 
+#Modified if __main__ to run functions as simultaneous threads
 if __name__ == '__main__':
     t1 = Thread(target = main)
     t2 = Thread(target = main2)
