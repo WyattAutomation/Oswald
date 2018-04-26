@@ -228,9 +228,7 @@ def chatbot(net, sess, chars, vocab, max_length, beam_width, relevance, temperat
             print(url1)
             if 'replied' in txt and url1 != (None):
                 bot.commentReplyCommenter(url1)
-                #print(mssg.translate(non_bmp_map))
                 user_input = bot.msg
-                #user_input =  client.onMessage()
                 user_command_entered, reset, states, relevance, temperature, topn, beam_width = process_user_command(
                     user_input, states, relevance, temperature, topn, beam_width)
                 if reset: states = initial_state_with_relevance_masking(net, sess, relevance)
@@ -249,7 +247,6 @@ def chatbot(net, sess, chars, vocab, max_length, beam_width, relevance, temperat
                         if i >= max_length: break
                     states = forward_text(net, sess, states, relevance, vocab, sanitize_text(vocab, "\n> "))
                     str1 = ''.join(out_chars)
-                    #client.sendMessage(str1, thread_id=client.tID, thread_type=client.tTYP)
                     bot.commentInPost(url1, str1)
 
         time.sleep(10)
@@ -294,7 +291,6 @@ def chatbot2(net, sess, chars, vocab, max_length, beam_width, relevance, tempera
                         if i >= max_length: break
                     states = forward_text(net, sess, states, relevance, vocab, sanitize_text(vocab, "\n> "))
                     str1 = ''.join(out_chars)
-                    #client.sendMessage(str1, thread_id=client.tID, thread_type=client.tTYP)
                     bot2.commentInPost(url2, str1)
                     time.sleep(2000)
                     bot2.get("https://mbasic.facebook.com/home.php?ref_component=mbasic_home_header&ref_page=%2Fwap%2Fhome.php&refid=7")
