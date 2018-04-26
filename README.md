@@ -39,7 +39,7 @@ Dependencies:
 
 Usage:
 
--In the /chatbot-rnn directory of the chatbot-rnn project by pender that you install above, replace chatbot.py with multiThread.py, and copy fbbot.py to this directory as well.
+-In the ../chatbot-rnn/chatbot-rnn-master directory of the chatbot-rnn project by pender that you install above, replace chatbot.py with multiThread.py, and copy fbbot.py to this directory as well.
 
 
 -Replace "yourfacebookemail@example.com","yourfacebookpassword" in multiThread.py with your own username and password for Facebook, and then in the chatbot-rnn directory, run:
