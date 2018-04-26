@@ -11,21 +11,24 @@ Dependencies:
 
 -Python 3.5.0  
 
--tensorfow 1.4.1
+-Dependencies for and installation of https://github.com/pender/chatbot-rnn, set up and working per the instructions with the pretrained reddit model offered by this project (at the time of this readme it uses tensorfow 1.4.1)
 
--Python selenium
+-Python selenium (pip3 install selenium)
 
--phantom.js (make sure it is in your PATH variable):  http://phantomjs.org/
+-Phantom.js (make sure it is in your PATH variable):  http://phantomjs.org/
 
 
 -Usage-
 
-replace "yourfacebookemail@example.com","yourfacebookpassword" in multiThread.py with your own username and password for Facebook, and then run:
+In the /chatbot-rnn directory of the chatbot-rnn project by pender that you install above, replace chatbot.py with multiThread.py, and copy fbbot.py to this directory as well.
+
+Replace "yourfacebookemail@example.com","yourfacebookpassword" in multiThread.py with your own username and password for Facebook, and then run:
 
   python3 multiThread.py
   
 in a terminal.
 
+This will post a comment as a reply to your friends posts every so often, and listen to notifications in order to reply to other profiles responses to your comments.  It takes the text from the posts and comment replies, skipping it if there is none, feeds it into the chatbot-rnn which encodes/decodes it into a response, which it then posts back to Facebook accordingly.
 
 Big props to hikaruAI's work here, of which I chopped down into "fbbot.py" and have been building on top of.  It got me started on this whole thing to begin with:
 https://github.com/hikaruAi/FacebookBot
