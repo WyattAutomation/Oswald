@@ -51,7 +51,7 @@ Usage:
 
 
 BUGS: 
-If you get an error where it hangs right after the logins and models load, try changing "by" in line 224  these comments to "ca".  This element is different across profiles, and I'm working on a handler to resolve this!!
+If you get an error where it hangs right after the logins and models load, try changing "by" in line 224 to "ca".  This element is different across profiles, and I'm working on a handler to resolve this!!
 
 
 
