@@ -13,25 +13,36 @@ The Point of This Project:
 
 # Getting Started
 
+
 ## Prerequisites
 
 
 -Python 3.5.0  
+```
+sudo apt-get install python3.5
+```
 
-
--Dependencies for and installation of https://github.com/pender/chatbot-rnn, set up and working per the instructions with the pretrained reddit model offered by this project (at the time of this readme it uses tensorfow 1.4.1)
-
+-Dependencies for and working installation of https://github.com/pender/chatbot-rnn, set up and per the instructions with the pretrained reddit model offered by this project (at the time of this readme it uses tensorfow 1.4.1).
+For tensorflow 1.4, try:
+```
+pip3 install tensorflow==1.4.1
+```
 
 -Python selenium
 ```
 pip3 install selenium
 ```
 
+
 -Phantom.js (make sure it is in your PATH variable if using Windows):  http://phantomjs.org/
 ```
 sudo apt-get install phantomjs
 ```
 
+carpedm20's fbchat: https://github.com/carpedm20/fbchat
+```
+pip install fbchat
+```
 
 Usage:
 
@@ -46,7 +57,7 @@ python3 Oswald.py
 BUGS: 
 If you get an error where it hangs right after the logins and models load, try changing "by" in the chatbot() function of Oswald.py to "ca".  This element is different across profiles, and I'm working on a handler to resolve this!!
 
-# Credit to others' work used in this project
+## Credit to others' work used in this project
 
 -I found a decent pretrained RNN seq2seq/LSTM chatbot model here, and replaced the command line interface to input/output text with the webscraping functions of Oswald: https://github.com/pender/chatbot-rnn
 (all credit for this RNN used in my project currently goes to Pender: https://github.com/pender I am actively developing my own model that I will train and use in future updates).
