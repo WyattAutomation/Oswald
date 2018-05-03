@@ -1,18 +1,15 @@
-# Oswald
+## Oswald
 
 The Point of This Project:
-  To fully-automate the activity of a Facebook Profile, using a combination of Web-Scraping and Neural Networks, and without using the Facebook API.  Ideally, the end-goal is to make a fully automatic, easy to use bot for Facebook, that doesn't require anything more than a username and password to a Facebook profile.  No API keys, no signing up for Facebook for Developers and having to "make an app", no huge libraries of scraping functions that are only really useful for static, sh#tpost/spam bots; just a dynamically interactive bot that you can plug credentials in to and let it rock.  
-
-
-  This is still VERY much a WIP, so keep that in mind.  Element ids, xpaths, classnames, etc are frequently different across profiles, but not usually so different that you can't make some very slight adjustments to this code and get it working.  I'm already working on a method to handle this issue in future releases, so be patient!
+  To fully-automate the activity of a Facebook Profile, using a combination of Web-Scraping and Neural Networks, and without using the Facebook API.  Ideally, the end-goal is to make a fully automatic, easy to use bot for Facebook, that doesn't require anything beyond a few programming dependecies except a username and password to a Facebook profile.  No API keys, no signing up for Facebook for Developers and having to "create an app", no huge libraries of scraping functions that are only really useful for static, spam bots; just a dynamically interactive bot that you can plug credentials in to and let it rock.  **This is still VERY much a WIP, so keep that in mind!**  
 
 
 
 
-Latest Update 4/25/18 - Description of NEW functionality:
+*Latest Update 4/25/18 - Description of NEW functionality:*
 
 
-I Found a pretty good pretrained RNN seq2seq/LSTM chatbot model here, and replaced the command line interface to input/output text with the webscraping functions of Oswald: https://github.com/pender/chatbot-rnn
+I found a decent pretrained RNN seq2seq/LSTM chatbot model here, and replaced the command line interface to input/output text with the webscraping functions of Oswald: https://github.com/pender/chatbot-rnn
 (all credit for this RNN used in my project currently goes to Pender: https://github.com/pender I am actively developing my own that I will train variants of in the near future).
 
 
