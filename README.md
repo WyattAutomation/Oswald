@@ -5,6 +5,7 @@ The Point of This Project:
 
 
 *Latest Updates 5/2/18:*
+
 -Disabled the commenter for Timeline Posts, as it was becoming a bit of a nuisance for my friends who voluntarily befriended the profile I use for Oswald to help with testing.  **Pender's pretrained reddit model used in this project is actually quite rude and downright offensive at times**, so be aware of that before you set this up.  It lead to some awkward misunderstandings/interactions from folks seeing it's off-color comments, who weren't friends of the bot or aware of what it was, getting into some fairly heated arguments with it.  While pretty darn hilarious, I have no intent of trolling innocent strangers with this and removed this component temporarily, until I train my own model that isn't such a hot-head.
 
 -Added the Facebook Messenger bot back into this update, using carpedm20's "fbchat".
