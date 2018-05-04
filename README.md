@@ -1,4 +1,4 @@
-## Oswald
+# Oswald
 
 The Point of This Project:
   To fully-automate the activity of a Facebook Profile, using a combination of Web-Scraping and a Neural Network chatbot, without using the Facebook API.  Ideally, the end-goal is to make an easy to use bot for Facebook, that doesn't require anything beyond a few programming dependecies and a username/password to a Facebook profile.  No API keys, no signing up for Facebook for Developers and having to "create an app", no huge libraries of scraping functions that are only really useful for static spam-bots; just a dynamically interactive bot that you can plug credentials in to and let it rock.  **This is still VERY much a WIP, so keep that in mind!**  
@@ -46,7 +46,7 @@ carpedm20's fbchat: https://github.com/carpedm20/fbchat
 pip3 install fbchat
 ```
 
-## Usage:
+## Usage
 
 -Move Oswald.py from this Git to your local ../chatbot-rnn/chatbot-rnn-master directory of the chatbot-rnn project by pender that you install above, and copy fbbot.py to this directory as well.
 
