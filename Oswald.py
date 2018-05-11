@@ -219,62 +219,70 @@ bot.login("yourfacebookemail@example.com","yourfacebookpassword")
 #If the notification contains "mentioned" (a tag), a generic, random quick-comment is posted as a response, to the direct "Reply" URL that tagReplier()
 #was able to gather from the main URL from the notification (in order to post inside of a comment-reply).  Contains a dupkicate to handle alternate
 #css selector that is encountered on occaision. 
+                
 def chatbot(net, sess, chars, vocab, max_length, beam_width, relevance, temperature, topn):
     non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
     states = initial_state_with_relevance_masking(net, sess, relevance)
     last_link = (None)
-    while True:        
-        bot.get("https://mbasic.facebook.com/notifications.php?ref_component=mbasic_home_header&ref_page=%2Fwap%2Fhome.php&refid=8")
-        b = bot.find_element_by_xpath('//*[@id="notifications_list"]')
-        link = bot.find_element_by_class_name("by")
-        url1 = link.get_attribute("href")
-        txt = link.text
-        randGreet = ["yo whaddup?", "You Rang?", "someone calle for me?", "Yeah, what's up?", "yeeeeeeeeeeeeah that would be me"]
-        if last_link != url1:
-            print(url1)
-            try:
-                if 'replied' in txt and url1 != (None):
-                    bot.commentReplyCommenter(url1)
-                    user_input = bot.msg
-                    user_command_entered, reset, states, relevance, temperature, topn, beam_width = process_user_command(
-                        user_input, states, relevance, temperature, topn, beam_width)
-                    if reset: states = initial_state_with_relevance_masking(net, sess, relevance)
-                    if not user_command_entered:
-                        states = forward_text(net, sess, states, relevance, vocab, sanitize_text(vocab, "> " + user_input + "\n>"))
-                        computer_response_generator = beam_search_generator(sess=sess, net=net,
-                            initial_state=copy.deepcopy(states), initial_sample=vocab[' '],
-                            early_term_token=vocab['\n'], beam_width=beam_width, forward_model_fn=forward_with_mask,
-                            forward_args={'relevance':relevance, 'mask_reset_token':vocab['\n'], 'forbidden_token':vocab['>'],
-                                            'temperature':temperature, 'topn':topn})
-                        out_chars = []
-                        for i, char_token in enumerate(computer_response_generator):
-                            out_chars.append(chars[char_token])
-                            print(possibly_escaped_char(out_chars), end='', flush=True)
-                            states = forward_text(net, sess, states, relevance, vocab, chars[char_token])
-                            if i >= max_length: break
-                        states = forward_text(net, sess, states, relevance, vocab, sanitize_text(vocab, "\n> "))
-                        str1 = ''.join(out_chars)
-                        bot.commentInPost(url1, str1)
-                if 'mentioned' in txt and url1 != (None):
-                    try:
-                        yo = random.choice(randGreet)
-                        bot.tagReplier(url1)
-                        url3 = bot.repUrl
-                        bot.commentInPost(url3, yo)
-                    except NoSuchElementException:
-                        print("Element couldn't be found; trying the alternate '.co' css_selector")
-                        yo = random.choice(randGreet)
-                        bot.tagReplier2(url1)
-                        url3 = bot.repUrl
-                        bot.commentInPost(url3, yo)
-            except NoSuchElementException:
-                print("Element couldn't be found somewhere along the line.  Starting listener loop over")                    
+    while True:
+        try:        
+            bot.get("https://mbasic.facebook.com/notifications.php?ref_component=mbasic_home_header&ref_page=%2Fwap%2Fhome.php&refid=8")
+            #b = bot.find_element_by_xpath('//*[@id="notifications_list"]')
+            link = bot.find_element_by_class_name("by")
+            url1 = link.get_attribute("href")
+            txt = link.text
+            randGreet = ["yo whaddup?", "You Rang?", "someone calle for me?", "Yeah, what's up?", "yeeeeeeeeeeeeah that would be me"]
+            if last_link != url1:
+                print(url1)
+                try:
+                    if 'replied' in txt and url1 != (None):
+                        bot.commentReplyCommenter(url1)
+                        user_input = bot.msg
+                        user_command_entered, reset, states, relevance, temperature, topn, beam_width = process_user_command(
+                            user_input, states, relevance, temperature, topn, beam_width)
+                        if reset: states = initial_state_with_relevance_masking(net, sess, relevance)
+                        if not user_command_entered:
+                            states = forward_text(net, sess, states, relevance, vocab, sanitize_text(vocab, "> " + user_input + "\n>"))
+                            computer_response_generator = beam_search_generator(sess=sess, net=net,
+                                initial_state=copy.deepcopy(states), initial_sample=vocab[' '],
+                                early_term_token=vocab['\n'], beam_width=beam_width, forward_model_fn=forward_with_mask,
+                                forward_args={'relevance':relevance, 'mask_reset_token':vocab['\n'], 'forbidden_token':vocab['>'],
+                                                'temperature':temperature, 'topn':topn})
+                            out_chars = []
+                            for i, char_token in enumerate(computer_response_generator):
+                                out_chars.append(chars[char_token])
+                                print(possibly_escaped_char(out_chars), end='', flush=True)
+                                states = forward_text(net, sess, states, relevance, vocab, chars[char_token])
+                                if i >= max_length: break
+                            states = forward_text(net, sess, states, relevance, vocab, sanitize_text(vocab, "\n> "))
+                            str1 = ''.join(out_chars)
+                            bot.commentInPost(url1, str1)
+                    if 'mentioned' in txt and url1 != (None):
+                        try:
+                            yo = random.choice(randGreet)
+                            bot.tagReplier(url1)
+                            url3 = bot.repUrl
+                            bot.commentInPost(url3, yo)
+                        except NoSuchElementException:
+                            print("Element couldn't be found; trying the alternate '.co' css_selector")
+                            yo = random.choice(randGreet)
+                            bot.tagReplier2(url1)
+                            url3 = bot.repUrl
+                            bot.commentInPost(url3, yo)
+                except NoSuchElementException:
+                    print("Element couldn't be found somewhere along the line.  Starting listener loop over")                    
+            time.sleep(10)
+            last_link = url1       
+        except TimeoutException:
+            print("Timeout exception thrown, trying logout/login cycle")
+            try:    
+                bot.logout()
+                bot.login("oswald.hydrabot@aol.com","what@cannibal")
+            except (TimeoutException, NoSuchElementException):    
+                print("Login refresh failed, possible network issue")
 
-        time.sleep(10)
-        last_link = url1       
-
-
-#fbchat clas and instance
+                
+#fbchat class and instance
 class EchoBot(Client):
     def onMessage(self, author_id, message_object, thread_id, thread_type, **kwargs):
         self.markAsDelivered(author_id, thread_id)
