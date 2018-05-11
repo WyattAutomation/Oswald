@@ -46,6 +46,16 @@ class fbbot(webdriver.PhantomJS):
         except NoSuchElementException as e:
             print("Fail to login")
             return False
+    
+    #logout method
+    def logout(self):
+        url = "https://mbasic.facebook.com/logout.php?h=AffSEUYT5RsM6bkY&t=1446949608&ref_component=mbasic_footer&ref_page=%2Fwap%2Fhome.php&refid=7"
+        try:
+            self.get(url)
+            return True
+        except Exception as e:
+            print("Failed to log out ->\n", e)
+        return False
 
     #comment in post method.
     #returns an error message with the post url if it can't comment
